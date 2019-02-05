@@ -1,0 +1,29 @@
+/* You can add global styles to this file, and also import other style files */
+.formish {
+    padding: 10px 0;
+    display: flex;
+    flex-flow: row;
+    justify-content: flex-start;
+    align-items: center;
+
+    * {
+        flex: 0 0 auto;
+    }
+
+    label {
+        flex: 0 0 auto;
+        min-width: 150px;
+        white-space: nowrap;
+        align-self: center;
+    }
+
+    & > input[type='url'] {
+        min-width: 400px;
+    }
+}
+
+.fas {
+    color: black;
+    font-size: 14px;
+    padding: 3px 5px;
+}

@@ -9,7 +9,8 @@ export class StoreService {
   private _config = new BehaviorSubject<any>({
     source: {
       path: 'http://localhost:5000/test.xls'
-    }
+    },
+    constants: {}, model: {},
   });
   private _rows = new Subject<any>();
 

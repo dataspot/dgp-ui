@@ -3,9 +3,7 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'app-footer',
   template: `
-    <p>
-      footer works!
-    </p>
+    &copy; 2018
   `,
   styles: [
     `

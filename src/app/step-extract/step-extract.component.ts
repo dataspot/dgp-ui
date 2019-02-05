@@ -7,18 +7,24 @@ import { StoreService } from '../store.service';
   template: `
     <app-step-extract-source [source]='config.source'
                              *ngIf='config.source'
-                             (change)='store.setConfig(config)'>
+                             (update)='store.setConfig($event ? {source:{path:$event}} : config)'>
     </app-step-extract-source>
     <app-step-extract-structure [structure]='config.structure'
                                 *ngIf='config.structure'
                                 (change)='store.setConfig(config)'>
     </app-step-extract-structure>
   `,
-  styles: []
+  styles: [
+`
+    :host {
+      padding: 10px;
+    }
+`
+  ]
 })
 export class StepExtractComponent implements OnInit {
 
-  private config: any = null;
+  config: any = null;
 
   constructor(private store: StoreService) { }
 

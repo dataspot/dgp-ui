@@ -14,16 +14,16 @@ import { WorkspaceComponent } from './workspace/workspace.component';
 import { StepsComponent } from './steps/steps.component';
 import { StepExtractComponent } from './step-extract/step-extract.component';
 import { StepMappingComponent } from './step-mapping/step-mapping.component';
-import { StepValidateComponent } from './step-validate/step-validate.component';
+import { StepEnrichComponent } from './step-enrich/step-enrich.component';
 import { StepPublishComponent } from './step-publish/step-publish.component';
 import { ResultsComponent } from './results/results.component';
 import { ResultTabsComponent } from './result-tabs/result-tabs.component';
 import { ResultTableComponent } from './result-table/result-table.component';
 import { StepTabsComponent } from './step-tabs/step-tabs.component';
-import { TabsComponent } from './tabs/tabs.component';
 import { StepExtractSourceComponent } from './step-extract-source/step-extract-source.component';
 import { StepExtractStructureComponent } from './step-extract-structure/step-extract-structure.component';
 import { StepMappingFieldComponent } from './step-mapping-field/step-mapping-field.component';
+import { ExtendableKeyvalueListComponent } from './extendable-keyvalue-list/extendable-keyvalue-list.component';
 
 @NgModule({
   declarations: [
@@ -36,16 +36,16 @@ import { StepMappingFieldComponent } from './step-mapping-field/step-mapping-fie
     StepsComponent,
     StepExtractComponent,
     StepMappingComponent,
-    StepValidateComponent,
+    StepEnrichComponent,
     StepPublishComponent,
     ResultsComponent,
     ResultTabsComponent,
     ResultTableComponent,
     StepTabsComponent,
-    TabsComponent,
     StepExtractSourceComponent,
     StepExtractStructureComponent,
-    StepMappingFieldComponent
+    StepMappingFieldComponent,
+    ExtendableKeyvalueListComponent
   ],
   imports: [
     BrowserModule,

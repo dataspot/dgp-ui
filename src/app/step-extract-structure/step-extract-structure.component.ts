@@ -3,7 +3,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 @Component({
   selector: 'app-step-extract-structure',
   template: `
-  <div>
+  <div class='formish'>
     <label>Skip Rows:</label>
     <input type='number'
       min="0" max="100"
@@ -11,7 +11,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
       (change)='changed()'
     />
   </div>
-  <div>
+  <div class='formish'>
     <label>Skip Columns:</label>
     <input type='number'
       min="0" max="100"

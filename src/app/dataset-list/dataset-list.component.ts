@@ -3,9 +3,8 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'app-dataset-list',
   template: `
-    <p>
-      dataset-list works!
-    </p>
+    <p>TBD</p>
+    <p>dataset list</p>
   `,
   styles: []
 })

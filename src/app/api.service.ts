@@ -40,11 +40,15 @@ export class ApiService {
           if (event.t === 'c') {
             this.config = event.p;
           } else if (event.t === 'r') {
+            console.log('ROW', event);
             that.store.addRow({
               kind: event.j,
               index: event.i,
-              data: event.p
-            })
+              data: event.p,
+              errors: event.e
+            });
+          } else if (event.t === 'e') {
+            console.log('got error', event.c, event.p);
           }
         }
       },
@@ -55,7 +59,7 @@ export class ApiService {
   }
 
   storeConfig(config: any) {
-    const suffix = this.executionId ? '?id=' + this.executionId : '';
+    const suffix = this.executionId ? '?uid=' + this.executionId : '';
     return this.http.post(this.SERVER + '/config' + suffix, config);
   }
 

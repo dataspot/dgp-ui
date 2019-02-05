@@ -3,11 +3,13 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'app-logo',
   template: `
-    <p>
-      logo works!
-    </p>
+    <img src='assets/img/logo.png' width='100px'/>
   `,
-  styles: []
+  styles: [`
+  :host {
+    margin: 5px;
+  }  
+`]
 })
 export class LogoComponent implements OnInit {
 

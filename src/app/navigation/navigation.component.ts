@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { zip } from 'rxjs';
 
 @Component({
   selector: 'app-navigation',
@@ -11,10 +10,11 @@ import { zip } from 'rxjs';
   styles: [
     `
 :host {
+  flex: 0 0 auto;
   display: flex;
   flex-flow: column;
   height: 100%;
-  padding: 0 15px;
+  padding: 0 10px;
   background-color: #444;
   color: #fff;
 }
