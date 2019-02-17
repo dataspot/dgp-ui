@@ -33,7 +33,6 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
     display: flex;
     flex-flow: column;
   }
-  
   `]
 })
 export class StepMappingFieldComponent implements OnInit {

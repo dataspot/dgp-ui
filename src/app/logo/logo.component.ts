@@ -8,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
   styles: [`
   :host {
     margin: 5px;
-  }  
+  }
 `]
 })
 export class LogoComponent implements OnInit {

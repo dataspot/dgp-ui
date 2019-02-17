@@ -53,7 +53,8 @@ export class StoreService {
   private _config = new BehaviorSubject<any>({
     source: {
       // path: 'http://localhost:5000/test.xls'
-      path: 'https://demo.ckan.org/dataset/7b169dc1-133b-4c3a-8306-5775bf2182bc/resource/cfca766a-0fc7-4f73-bd84-981b651a3606/download/boost-moldova-2014.csv',
+      path: 'https://demo.ckan.org/dataset/7b169dc1-133b-4c3a-8306-5775bf2182bc' +
+            '/resource/cfca766a-0fc7-4f73-bd84-981b651a3606/download/boost-moldova-2014.csv',
     },
     constants: {}, model: {},
   });
