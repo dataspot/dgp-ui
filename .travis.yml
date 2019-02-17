@@ -12,7 +12,7 @@ before_script:
   - sh -e /etc/init.d/xvfb start
 script:
 - ng lint
-- ng test
+- ng test --no-watch
 - ng build --prod
 - docker build -t $DOCKER_REPO:latest
 deploy:

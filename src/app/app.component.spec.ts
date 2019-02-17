@@ -22,6 +22,7 @@ import { StepMappingFieldComponent } from './step-mapping-field/step-mapping-fie
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { ExtendableKeyvalueListComponent } from './extendable-keyvalue-list/extendable-keyvalue-list.component';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
@@ -44,7 +45,8 @@ describe('AppComponent', () => {
         StepTabsComponent,
         StepExtractSourceComponent,
         StepExtractStructureComponent,
-        StepMappingFieldComponent
+        StepMappingFieldComponent,
+        ExtendableKeyvalueListComponent,
       ],
       imports: [
         BrowserModule,
@@ -57,16 +59,5 @@ describe('AppComponent', () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.debugElement.componentInstance;
     expect(app).toBeTruthy();
-  }));
-  it(`should have as title 'kuvira'`, async(() => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.debugElement.componentInstance;
-    expect(app.title).toEqual('kuvira');
-  }));
-  it('should render title in a h1 tag', async(() => {
-    const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('h1').textContent).toContain('Welcome to kuvira!');
   }));
 });
