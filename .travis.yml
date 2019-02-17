@@ -14,7 +14,7 @@ script:
 - ng lint
 - ng test --no-watch
 - ng build --prod
-- docker build -t $DOCKER_REPO:latest
+- docker build . -t $DOCKER_REPO:latest
 deploy:
   provider: script
   script: bash docker_push
