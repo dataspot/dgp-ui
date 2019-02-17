@@ -4,7 +4,7 @@ COPY package.json /app/
 RUN cd /app/ && npm install -g @angular/cli && npm install
 
 COPY . /app/
-RUN cd /app/ && ng build --prod && rm -rf node_modules
+RUN cd /app/ && ng build --prod 
 
 EXPOSE 8000
 
