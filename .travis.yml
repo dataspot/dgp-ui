@@ -7,6 +7,9 @@ before_install:
 - npm install -g @angular/cli
 install:
 - npm install
+- webdriver-manager update
+before_script:
+  - sh -e /etc/init.d/xvfb start
 script:
 - ng lint
 - ng test
@@ -19,6 +22,9 @@ deploy:
     branch: master
 env:
   global:
+  - DBUS_SESSION_BUS_ADDRESS=/dev/null
+  - DISPLAY=:99.0
+  - CHROME_BIN=chromium-browser
   - DOCKER_REPO: akariv/dgp-ui
   - secure: bN3yG8OA11HNLbTXjHPMEL13v+o9J8oN6jxdSALREjgTyZi3BH0erhR7IL0HTzs1UZzNPWt/6XjmOF7/LYRpiZwoDX5UnyhieZdzcrQu5pEEqNOxjqQUDYR0u7cdQ/y/nuNt6eajeOCMRYX6XbBy6FXWFS4i49gM4BrtTE6eLPDOwnv3hKPeUaxjK7hHjaqhuCSXK0q79co/ZyWB0N6pzcX42oJW1rW+dpb9D75J/2PkeG5nj84MakFHFvS+/2lUt3EO3pZ8VqeEesbNRYpMeAy6+Xi08uMl0PvqXew6cfR3tijJOnCHh2Ju2JRMY8Izcn9fs3F6lU+V5MtDV4SgsFYQcy9+Xtgd+ufmjqfhyXs1mSWP8P3pONqA5Mm2yMz3SKV4t4cefmHSrAZ4n+jxKe26cq06XJuG9H8qG9rqFc+pTf/RGkekbDadtJLSDz2fWeQwxbhGUVKpcksT96mBdKFVkeSeHw1bkv7DS9mZTJGUb47eFlxOgXJ55Er1SrUikNEYYI6q3XHpC8y90nad8txkOp31MQfR02PiPpsgcfLLpDq7lJdsiWJ8UHPk/asjdshmae5c4QHpdkf7kApSdM2IxpNcihbZwoX0KjizhUQXIxjQZ1qsCDE9ejHt+mlN3mknafh5hBBfEADKQ5m+d7pE4GDZPJjX59h8N+HM3Uk=
   - secure: VfUeVVba9eVGATTyn3s5HHxNM740IEPMiEo72+6kQGC2+vgc57Ok56wGHyxzMAigLA+uC7WlCN4bwysslffJszPKYajpPNRrBHh/EKDKK9CbJolawab6zwKBQiWzVtuhcNV6L3J9PvlfTtwctMjgZlQmahb+e29LBKsVQecGlZl4Hen0c5nvfHY9ZzmApi4Po7aZFjE0bPoYKnXA+xOW3goUNnfZtuXpJQzolaDLzw+7F3udEdTcClb186JF7ANkjlJ53W750OtXWE29l+EIyCWnHAWYAkgJefXyj7JH1BjmP+jrfvOXjxuYetIl0YXXTWmbQNgJDschr4wXuJZxHtfNIMLt8+qpKywzmVgyuCN73+46S0/LsJc/ICAcuaCcTn6SJYxjytR9IaExk+riDjINdp1w6nXnDoGaJGlhVJMyVChl7yoLpHUaNYTxVXwWNzzPqE7J+ZLfT7G3lywZywITtX8ogYtGoQBDnsSGT2A+uSLUhn+XE8PBSUEC5YCrWeGcm4tcO5vXebfdZdas+Tzen42+GEiWonSTfxJd55diDIGqkb8gRyUVw7+7vosNTNcnCJO0SMl/HZKYvdwhIjq4TLoesJreR19ub5KbPW/3qpEpxsJH/G0/5Il0lfF7Ac7bYTBcQ0UwfojeT3v2JAzBXN631GsRhubaSHUN7O0=
