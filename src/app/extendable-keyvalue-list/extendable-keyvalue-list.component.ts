@@ -36,19 +36,26 @@ div {
 export class ExtendableKeyvalueListComponent implements OnInit {
 
   @Input() data;
+  @Input() dataList;
   @Output() update = new EventEmitter<any>();
+  @Output() updateList = new EventEmitter<any>();
 
   values = [];
 
   constructor() { }
 
   ngOnInit() {
-    this.values = Object.entries(this.data);
+    if (this.dataList) {
+      this.values = this.dataList.slice();
+    } else {
+      this.values = Object.entries(this.data);
+    }
     this.values.push(['', '']);
   }
 
   changed() {
-    console.log(this.values);
+    this.updateList.emit(this.values.slice(0, -1));
+
     const x = [];
     const ret = {};
     for (const v of this.values) {
@@ -59,7 +66,6 @@ export class ExtendableKeyvalueListComponent implements OnInit {
     }
     x.push(['', '']);
     this.values = x;
-    console.log(ret);
     this.update.emit(ret);
   }
 }

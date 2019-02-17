@@ -1,10 +1,10 @@
 FROM node:8-alpine
 
 COPY package.json /app/
-RUN cd /app/ && npm install && npm install -g @angular/cli
+RUN cd /app/ && npm install -g @angular/cli && npm install
 
 COPY . /app/
-RUN cd /app/ && ng build --prod
+RUN cd /app/ && ng build --prod && rm -rf node_modules
 
 EXPOSE 8000
 

@@ -10,10 +10,12 @@ import { StoreService } from '../store.service';
       <th *ngFor='let hdr of headers'>{{hdr}}</th>
     </thead>
     <tbody>
-      <tr *ngFor='let row of rows'>
-        <td *ngFor='let val of row' [innerHtml]='val'>
-        </td>
-      </tr>
+      <ng-container *ngFor='let row of rows'>
+        <tr [class.errd]='row.errd'>
+          <td *ngFor='let val of row.data' [innerHtml]='val'>
+          </td>
+        </tr>
+      </ng-container>
     </tbody>
   </table>
   `,
@@ -38,6 +40,10 @@ import { StoreService } from '../store.service';
 
     tr:nth-child(2n+1) {
       background-color: #eee;
+    }
+
+    tr.errd td {
+      background-color: salmon;
     }
 
     td, th {
@@ -76,13 +82,16 @@ export class ResultTableComponent implements OnInit {
                   this.validate.emit(true);
                 }, 0);
               } else {
-                if (this.rows[this.rows.length - 1][0] + 1 !== row.index ) {
-                  this.rows.push(this.headers.map((h) => '&hellip;'));
+                if (this.rows[this.rows.length - 1].data[0] + 1 !== row.index ) {
+                  this.rows.push({data: this.headers.map((h) => '&hellip;')});
                 }
               }
-              const mapped = this.headers.map((h) => this.strize(row.data[h]));
+              const mapped: any = this.headers.map((h) => this.strize(row.data[h]));
               mapped[0] = row.index;
-              this.rows.push(mapped);
+              this.rows.push({
+                data: mapped,
+                errd: row.errors && row.errors.length > 0
+              });
             }
           }
         });

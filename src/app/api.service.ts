@@ -11,7 +11,7 @@ import { EventSourcePolyfill } from 'ng-event-source';
 export class ApiService {
 
   private executionId = null;
-  private SERVER = 'http://localhost:8000';
+  private SERVER = '';
 
   private _rows = new Subject<any>();
 
@@ -30,6 +30,7 @@ export class ApiService {
     const eventObserver = {
       config: null,
       next(event) {
+        // console.log('EVENT', event);
         if (event.complete) {
           if (this.config) {
             const config = this.config;
@@ -40,7 +41,9 @@ export class ApiService {
           if (event.t === 'c') {
             this.config = event.p;
           } else if (event.t === 'r') {
-            console.log('ROW', event);
+            if (event.i % 1000 === 0) {
+              console.log('ROW', event);
+            }
             that.store.addRow({
               kind: event.j,
               index: event.i,
@@ -48,7 +51,8 @@ export class ApiService {
               errors: event.e
             });
           } else if (event.t === 'e') {
-            console.log('got error', event.c, event.p);
+            console.log('got error', event.c, event.p, event.e);
+            that.store.setErrors(event.e);
           }
         }
       },
@@ -64,6 +68,7 @@ export class ApiService {
   }
 
   fetchEvents(executionId: string) {
+    this.store.setErrors([]);
     const observable = Observable.create(observer => {
 
       let eventSource;

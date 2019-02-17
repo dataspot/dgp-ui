@@ -12,19 +12,21 @@ import { StoreService } from '../store.service';
       </select>
     </div>
     <div class='formish missing'
-         *ngIf='config.model.missingMandatoryFields.length > 0'>
+         *ngIf='errors.length > 0'>
       <label>Missing Mappings:</label>
       <span>
-        <span *ngFor='let txid of config.model.missingMandatoryFields'>
-          {{ txid.title }}
-        </span>
+        <ng-container *ngFor='let error of errors' >
+          <span *ngIf='error[0] === 1' [title]='error[1].description'>
+            {{ error[1].title }}
+          </span>
+        </ng-container>
       </span>
     </div>
     <div class='formish'>
       <label>Constants:</label>
       <app-extendable-keyvalue-list
-          [data]='config.constants || {}'
-          (update)='config.constants = $event; changed()'
+          [dataList]='config.constants || []'
+          (updateList)='config.constants = $event; changed()'
       ></app-extendable-keyvalue-list>
     </div>
     <ng-container *ngIf='config.model && config.taxonomy'>
@@ -70,15 +72,16 @@ import { StoreService } from '../store.service';
 export class StepMappingComponent implements OnInit {
 
   config: any = null;
+  errors: any = [];
 
   constructor(private store: StoreService) { }
 
   ngOnInit() {
     this.store.getConfig().subscribe(config => this.config = config);
+    this.store.getErrors().subscribe(errors => this.errors = errors);
   }
 
   changed() {
-    console.log('new config', this.config);
     this.store.setConfig(this.config);
   }
 
