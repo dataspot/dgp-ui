@@ -97,7 +97,9 @@ export class ApiService {
       eventSource.onerror = x => {
         console.log('ERROR', x);
         // this.error.emit(x.message);
-        observer.error(x);
+        // observer.error(x);
+        observer.next({complete: true});
+        observer.complete();
       };
 
       return () => {

@@ -53,8 +53,9 @@ export class StoreService {
   private _config = new BehaviorSubject<any>({
     source: {
       // path: 'http://localhost:5000/test.xls'
-      path: 'https://demo.ckan.org/dataset/7b169dc1-133b-4c3a-8306-5775bf2182bc' +
-            '/resource/cfca766a-0fc7-4f73-bd84-981b651a3606/download/boost-moldova-2014.csv',
+      // path: 'https://demo.ckan.org/dataset/7b169dc1-133b-4c3a-8306-5775bf2182bc' +
+      //       '/resource/cfca766a-0fc7-4f73-bd84-981b651a3606/download/boost-moldova-2014.csv',
+      path: 'https://www.odata.org.il/dataset/c4652948-2fb7-45a2-894f-090b5251f4a1/resource/170e1fe3-9d11-4851-b71c-6ed0f3147a27/download/-2018.xlsx'
     },
     constants: {}, model: {},
   });

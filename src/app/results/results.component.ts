@@ -13,12 +13,11 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
   styles: [
     `
 :host {
-  flex: 1 1 auto;
+  flex: 1 1 40%;
   padding: 10px;
   overflow-y: scroll;
   overflow-x: scroll;
   border-top: 3px double #444;
-  max-height: 40%;
 }
     `
   ]

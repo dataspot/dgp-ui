@@ -4,7 +4,7 @@ import { Component, OnInit } from '@angular/core';
   selector: 'app-step-enrich',
   template: `
     <p>
-      step-enrich works!
+      Loading taxonomy specific enrichments...
     </p>
   `,
   styles: [

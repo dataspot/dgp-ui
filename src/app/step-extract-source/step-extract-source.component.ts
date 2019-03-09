@@ -13,11 +13,12 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
   <div class='formish'>
     <label>Format:</label>
     <select [(ngModel)]='source.format' change='changed()'>
-      <option value='xls'>Excel</option>
+      <option value='xls'>Excel (xls)</option>
+      <option value='xlsx'>Excel (xlsx)</option>
       <option value='csv'>CSV</option>
     </select>
   </div>
-  <ng-container *ngIf='source.format==="xls"'>
+  <ng-container *ngIf='source.format==="xls" || source.format==="xlsx"'>
     <div class='formish'>
       <label>Sheet:</label>
       <input type='number'

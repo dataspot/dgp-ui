@@ -70,14 +70,13 @@ export class ResultTableComponent implements OnInit {
           if (this.kind === row.kind) {
             if (row.index === -1) {
               this.rows = [];
-              this.headers = [];
+              this.headers = row.data;
+              this.headers.unshift('#');
               setTimeout(() => {
                 this.validate.emit(false);
               }, 0);
             } else {
               if (this.rows.length === 0) {
-                this.headers = Object.keys(row.data).sort();
-                this.headers.unshift('#');
                 setTimeout(() => {
                   this.validate.emit(true);
                 }, 0);
