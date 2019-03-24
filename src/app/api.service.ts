@@ -11,7 +11,7 @@ import { EventSourcePolyfill } from 'ng-event-source';
 export class ApiService {
 
   private executionId = null;
-  private SERVER = '';
+  private SERVER = '/api';
 
   private _rows = new Subject<any>();
 

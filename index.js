@@ -18,8 +18,7 @@ function proxyOpts(prefix) {
 }
 
 app.set('port', process.env.PORT || 8001);
-app.use('/events', proxy(backend, proxyOpts('/events')));
-app.use('/config', proxy(backend, proxyOpts('/config')));
+app.use('/api', proxy(backend, proxyOpts('/api')));
 app.use('/', express.static(rootDir, {
   maxAge: '1d',
 }));
