@@ -3,24 +3,8 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-results',
-  template: `
-    <app-result-table
-      *ngFor='let table of TABLES'
-      [kind]='table[0]' [hidden]='step!==table[1]'
-      (validate)='validate_kind(table[1], $event)'
-    ></app-result-table>
-  `,
-  styles: [
-    `
-:host {
-  flex: 1 1 40%;
-  padding: 10px;
-  overflow-y: scroll;
-  overflow-x: scroll;
-  border-top: 3px double #444;
-}
-    `
-  ]
+  templateUrl: 'results.component.html',
+  styleUrls: ['results.component.less'],
 })
 export class ResultsComponent implements OnInit {
 

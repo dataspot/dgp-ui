@@ -19,6 +19,7 @@ function proxyOpts(prefix) {
 
 app.set('port', process.env.PORT || 8001);
 app.use('/api', proxy(backend, proxyOpts('/api')));
+app.use('/configs', proxy(backend, proxyOpts('/configs')));
 app.use('/', express.static(rootDir, {
   maxAge: '1d',
 }));

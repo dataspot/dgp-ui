@@ -5,6 +5,7 @@ import { StoreService } from '../store.service';
 @Component({
   selector: 'app-result-table',
   template: `
+  <span>Count: {{rowcount}}</span>
   <table>
     <thead>
       <th *ngFor='let hdr of headers'>{{hdr}}</th>
@@ -62,6 +63,7 @@ export class ResultTableComponent implements OnInit {
   @Output() validate = new EventEmitter<boolean>();
 
   rows = [];
+  rowcount = 0;
   headers = [];
 
   constructor(private store: StoreService) {
@@ -70,6 +72,7 @@ export class ResultTableComponent implements OnInit {
           if (this.kind === row.kind) {
             if (row.index === -1) {
               this.rows = [];
+              this.rowcount = 0;
               this.headers = row.data;
               this.headers.unshift('#');
               setTimeout(() => {
@@ -81,17 +84,23 @@ export class ResultTableComponent implements OnInit {
                   this.validate.emit(true);
                 }, 0);
               } else {
-                if (this.rows[this.rows.length - 1].data[0] + 1 !== row.index ) {
+                if (this.rows[this.rows.length - 1].data[0] !== row.index ) {
                   this.rows.push({data: this.headers.map((h) => '&hellip;')});
                 }
               }
               const mapped: any = this.headers.map((h) => this.strize(row.data[h]));
-              mapped[0] = row.index;
+              mapped[0] = row.index + 1;
               this.rows.push({
                 data: mapped,
                 errd: row.errors && row.errors.length > 0
               });
             }
+          }
+        });
+      this.store.getRowCount()
+        .subscribe((count) => {
+          if (this.kind === count.kind) {
+            this.rowcount = count.index;
           }
         });
   }

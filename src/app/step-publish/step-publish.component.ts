@@ -4,7 +4,7 @@ import { Component, OnInit } from '@angular/core';
   selector: 'app-step-publish',
   template: `
     <p>
-      step-publish works!
+      Loading data into database...
     </p>
   `,
   styles: []

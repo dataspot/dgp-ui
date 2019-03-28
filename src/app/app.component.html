@@ -1,0 +1,3 @@
+<app-navigation></app-navigation>
+<app-configurations *ngIf='!(store.getConfig() | async)'></app-configurations>
+<app-workspace *ngIf='store.getConfig() | async'></app-workspace>

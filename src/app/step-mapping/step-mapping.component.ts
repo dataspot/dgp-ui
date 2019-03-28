@@ -61,7 +61,7 @@ import { StoreService } from '../store.service';
           display: block;
           padding: 1px 15px;
           margin: 0px 10px;
-          margin-left: 0;
+          margin-start: 0;
           border: solid 1px #400;
           border-radius: 10px;
           background-color: #fcc;

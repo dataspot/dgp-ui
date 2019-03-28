@@ -3,6 +3,9 @@ import { BehaviorSubject, Subject } from 'rxjs';
 
 
 function compare(obj1, obj2, prefix) {
+  if (!obj1 || !obj2) {
+    return false;
+  }
   if (!prefix) {
     prefix = '';
   }
@@ -50,17 +53,16 @@ function compare(obj1, obj2, prefix) {
 })
 export class StoreService {
 
-  private _config = new BehaviorSubject<any>({
+  private BASE_CONFIG = {
     source: {
-      // path: 'http://localhost:5000/test.xls'
-      // path: 'https://demo.ckan.org/dataset/7b169dc1-133b-4c3a-8306-5775bf2182bc' +
-      //       '/resource/cfca766a-0fc7-4f73-bd84-981b651a3606/download/boost-moldova-2014.csv',
-      path: 'https://www.odata.org.il/dataset/c4652948-2fb7-45a2-894f-090b5251f4a1/resource/170e1fe3-9d11-4851-b71c-6ed0f3147a27/download/-2018.xlsx'
+      path: ''
     },
     constants: {}, model: {},
-  });
+  };
+  private _config = new BehaviorSubject<any>(null);
   private currentConfig = JSON.parse(JSON.stringify(this._config.getValue()));
   private _rows = new Subject<any>();
+  private _rowcount = new Subject<any>();
   private _errors = new BehaviorSubject<any>([]);
 
   constructor() { }
@@ -73,8 +75,16 @@ export class StoreService {
     return this._rows;
   }
 
+  getRowCount(): Subject<any> {
+    return this._rowcount;
+  }
+
   getErrors(): BehaviorSubject<any> {
     return this._errors;
+  }
+
+  newConfig() {
+    this.setConfig(this.BASE_CONFIG);
   }
 
   setConfig(newConfig: any) {
@@ -92,5 +102,9 @@ export class StoreService {
 
   addRow(row: any) {
     this._rows.next(row);
+  }
+
+  setRowCount(count: any) {
+    this._rowcount.next(count);
   }
 }

@@ -1,31 +1,16 @@
 import { Component } from '@angular/core';
 import { ApiService } from './api.service';
+import { StoreService } from './store.service';
 
 @Component({
   selector: 'app-root',
-  template: `
-    <app-navigation></app-navigation>
-    <app-workspace></app-workspace>
-  `,
-  styles: [
-    `
-::ng-deep body {
-  margin: 0;
-  font-family: 'Open Sans', sans-serif;
-  font-size: 16px;
-}
-
-:host {
-  display: flex;
-  flex-flow: row;
-  width: 100vw;
-  height: 100vh;
-}
-    `
+  templateUrl: 'app.component.html',
+  styleUrls: [
+    'app.component.less'
   ]
 })
 export class AppComponent {
   title = 'kuvira';
 
-  constructor(private api: ApiService) {}
+  constructor(private api: ApiService, public store: StoreService) {}
 }

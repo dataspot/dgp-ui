@@ -1,0 +1,5 @@
+  <div class='snippets'>
+    <span *ngFor='let snippet of config.snippets'>{{snippet}}</span>
+  </div>
+  <a target='_blank' [href]='config.source'><i class="fa fa-download" aria-hidden="true"></i></a>
+  <a (click)='store.setConfig(config.config)'><i class="fa fa-pencil-alt" aria-hidden="true"></i></a>

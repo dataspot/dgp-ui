@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { StoreService } from './store.service';
-import { Observable, of, Subject  } from 'rxjs';
-import { switchMap, exhaustMap, map } from 'rxjs/operators';
+import { Observable, of, Subject, BehaviorSubject  } from 'rxjs';
+import { switchMap, exhaustMap, map, filter } from 'rxjs/operators';
 import { EventSourcePolyfill } from 'ng-event-source';
 
 @Injectable({
@@ -12,14 +12,16 @@ export class ApiService {
 
   private executionId = null;
   private SERVER = '/api';
+  private CONFIGS = '/configs';
 
-  private _rows = new Subject<any>();
+  public configurations = new BehaviorSubject<any[]>([]);
 
   constructor(private http: HttpClient,
               private store: StoreService) {
 
     const events = (<Observable<any>>(this.store.getConfig()))
          .pipe(
+            filter((x: any) => !!x),
             switchMap((config: any) => this.storeConfig(config)),
             switchMap((response: any) => {
               this.executionId = response.uid;
@@ -50,6 +52,18 @@ export class ApiService {
               data: event.p,
               errors: event.e
             });
+            that.store.setRowCount({
+              kind: event.j,
+              index: event.i,
+            });
+          } else if (event.t === 'n') {
+            if (event.i % 1000 === 0) {
+              console.log('ROW', event);
+            }
+            that.store.setRowCount({
+              kind: event.j,
+              index: event.i,
+            });
           } else if (event.t === 'e') {
             console.log('got error', event.c, event.p, event.e);
             that.store.setErrors(event.e);
@@ -65,6 +79,16 @@ export class ApiService {
   storeConfig(config: any) {
     const suffix = this.executionId ? '?uid=' + this.executionId : '';
     return this.http.post(this.SERVER + '/config' + suffix, config);
+  }
+
+  refreshConfigurations() {
+    this.http.get(this.CONFIGS)
+               .pipe(
+                  map((resp: any) => resp.configurations)
+               )
+               .subscribe((configurations) => {
+                 this.configurations.next(configurations);
+               });
   }
 
   fetchEvents(executionId: string) {

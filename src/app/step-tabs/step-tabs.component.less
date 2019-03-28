@@ -1,0 +1,36 @@
+:host {
+    flex: 0 0 auto;
+    display: flex;
+    flex-flow: column;
+    align-items: flex-end;
+    margin-top: 100px;
+ 
+    .tab {
+        margin: 5px 0;
+        margin-left: -5px;
+        border: 1px solid rgba(0,0,0,.25);
+        padding: 3px 10px;
+        border-radius: 4px;
+        cursor: pointer;
+        z-index: 1;
+        background-color: #fff;
+    }
+    
+    .tab.active {
+        border-width: 3px;
+        border-color: rgba(0,0,0,.75);
+        padding: 1px 8px;
+    }
+
+    .fa-check-circle {
+        visibility: hidden;
+        color: #66e866;
+    }
+    
+    .tab.valid {
+        // background-color: #66e866;
+        .fa-check-circle {
+            visibility: visible;
+        }
+    }
+}
