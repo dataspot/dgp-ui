@@ -12,7 +12,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
   </div>
   <div class='formish'>
     <label>Format:</label>
-    <select [(ngModel)]='source.format' change='changed()'>
+    <select [(ngModel)]='source.format' (change)='changed()'>
       <option value='xls'>Excel (xls)</option>
       <option value='xlsx'>Excel (xlsx)</option>
       <option value='csv'>CSV</option>
@@ -21,8 +21,8 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
   <ng-container *ngIf='source.sheet_names'>
     <div class='formish'>
       <label>Sheet:</label>
-      <select [(ngModel)]='source.sheet' change='changed()'>
-        <option *ngFor='let x of source.sheet_names' [value]='x[0]'>{{x[1]}}</option>
+      <select [(ngModel)]='source.sheet' (change)='changed()'>
+        <option *ngFor='let x of source.sheet_names' [value]='x[1]'>{{x[1]}}</option>
       </select>
     </div>
   </ng-container>
