@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 
 import { StoreService } from '../store.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-step-extract',
@@ -22,14 +23,19 @@ import { StoreService } from '../store.service';
 `
   ]
 })
-export class StepExtractComponent implements OnInit {
+export class StepExtractComponent implements OnInit, OnDestroy {
 
   config: any = null;
+  sub: Subscription = null;
 
   constructor(private store: StoreService) { }
 
   ngOnInit() {
-    this.store.getConfig().subscribe(config => this.config = config);
+    this.sub = this.store.getConfig().subscribe(config => this.config = config);
+  }
+
+  ngOnDestroy() {
+    this.sub.unsubscribe();
   }
 
 }

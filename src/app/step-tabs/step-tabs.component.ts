@@ -1,4 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { StoreService } from '../store.service';
 
 @Component({
   selector: 'app-step-tabs',
@@ -11,7 +12,7 @@ export class StepTabsComponent implements OnInit {
   @Input() validation: any = {};
   @Output() change = new EventEmitter<string>();
 
-  constructor() { }
+  constructor(public store: StoreService) { }
 
   ngOnInit() {
   }

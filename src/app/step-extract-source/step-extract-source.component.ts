@@ -48,7 +48,7 @@ export class StepExtractSourceComponent implements OnInit {
   ngOnInit() {
   }
 
-  changed(path: string) {
+  changed(path?: string) {
     this.update.emit(path);
   }
 

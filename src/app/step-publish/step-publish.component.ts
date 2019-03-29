@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { StoreService } from '../store.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-step-publish',
@@ -14,14 +15,15 @@ import { StoreService } from '../store.service';
     }
   `]
 })
-export class StepPublishComponent implements OnInit {
+export class StepPublishComponent implements OnInit, OnDestroy {
 
   config: any = null;
+  sub: Subscription = null;
 
   constructor(private store: StoreService) { }
 
   ngOnInit() {
-    this.store.getConfig().subscribe(config => {
+    this.sub = this.store.getConfig().subscribe(config => {
       this.config = config;
       this.config['publish'] = {allowed: false};
     });
@@ -31,6 +33,10 @@ export class StepPublishComponent implements OnInit {
     this.config['publish'] = {allowed: true};
     this.store.setConfig(this.config);
     this.config['publish'] = {allowed: false};
+  }
+
+  ngOnDestroy() {
+    this.sub.unsubscribe();
   }
 
 }

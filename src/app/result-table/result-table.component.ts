@@ -1,6 +1,7 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, OnDestroy } from '@angular/core';
 import { ApiService } from '../api.service';
 import { StoreService } from '../store.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-result-table',
@@ -57,7 +58,7 @@ import { StoreService } from '../store.service';
 `
   ]
 })
-export class ResultTableComponent implements OnInit {
+export class ResultTableComponent implements OnInit, OnDestroy {
 
   @Input() kind: number;
   @Output() validate = new EventEmitter<boolean>();
@@ -65,12 +66,15 @@ export class ResultTableComponent implements OnInit {
   rows = [];
   rowcount = 0;
   headers = [];
+  subs: Subscription[] = [];
 
   constructor(private store: StoreService) {
-    this.store.getRows()
+    this.subs.push(
+      this.store.getRows()
         .subscribe((row) => {
           if (this.kind === row.kind) {
             if (row.index === -1) {
+              console.log('GOT HEADERS', row);
               this.rows = [];
               this.rowcount = 0;
               this.headers = row.data;
@@ -96,13 +100,16 @@ export class ResultTableComponent implements OnInit {
               });
             }
           }
-        });
-      this.store.getRowCount()
-        .subscribe((count) => {
-          if (this.kind === count.kind) {
-            this.rowcount = count.index;
-          }
-        });
+        })
+      );
+      this.subs.push(
+        this.store.getRowCount()
+          .subscribe((count) => {
+            if (this.kind === count.kind) {
+              this.rowcount = count.index;
+            }
+          })
+      );
   }
 
   strize(v) {
@@ -117,4 +124,9 @@ export class ResultTableComponent implements OnInit {
   ngOnInit() {
   }
 
+  ngOnDestroy() {
+    for (const s of this.subs) {
+      s.unsubscribe();
+    }
+  }
 }

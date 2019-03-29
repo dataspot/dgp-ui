@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 
 import { StoreService } from '../store.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-step-mapping',
@@ -69,20 +70,25 @@ import { StoreService } from '../store.service';
     `
       ]
 })
-export class StepMappingComponent implements OnInit {
+export class StepMappingComponent implements OnInit, OnDestroy {
 
   config: any = null;
   errors: any = [];
-
+  subs: Subscription[] = [];
   constructor(private store: StoreService) { }
 
   ngOnInit() {
-    this.store.getConfig().subscribe(config => this.config = config);
-    this.store.getErrors().subscribe(errors => this.errors = errors);
+    this.subs.push(this.store.getConfig().subscribe(config => this.config = config));
+    this.subs.push(this.store.getErrors().subscribe(errors => this.errors = errors));
   }
 
   changed() {
     this.store.setConfig(this.config);
   }
 
+  ngOnDestroy() {
+    for (const s of this.subs) {
+      s.unsubscribe();
+    }
+  }
 }
