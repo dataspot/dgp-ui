@@ -15,6 +15,10 @@ export class StepTabsComponent implements OnInit {
   constructor(public store: StoreService) { }
 
   ngOnInit() {
+    if (!this.validation.map)     { this.validation.map = {}; }
+    if (!this.validation.extract) { this.validation.extract = {}; }
+    if (!this.validation.enrich)  { this.validation.enrich = {}; }
+    if (!this.validation.publish) { this.validation.publish = {}; }
   }
 
   select(selected) {

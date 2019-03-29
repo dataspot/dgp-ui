@@ -64,6 +64,11 @@ export class ApiService {
               kind: event.j,
               index: event.i,
             });
+          } else if (event.t === 'd') {
+            that.store.addRow({
+              kind: event.j,
+              index: -2,
+            });
           } else if (event.t === 'e') {
             console.log('got error', event.c, event.p, event.e);
             that.store.setErrors(event.e);

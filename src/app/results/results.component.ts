@@ -9,7 +9,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 export class ResultsComponent implements OnInit {
 
   @Input() step: string;
-  @Output() validate = new EventEmitter<{kind: string, valid: boolean}>();
+  @Output() validate = new EventEmitter<any>();
 
   TABLES = [
     [0, 'extract'],
@@ -23,8 +23,8 @@ export class ResultsComponent implements OnInit {
   ngOnInit() {
   }
 
-  validate_kind(kind: string, valid: boolean) {
-    this.validate.emit({kind, valid});
+  validate_kind(event) {
+    this.validate.emit(event);
   }
 
 }

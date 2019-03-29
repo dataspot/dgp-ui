@@ -61,12 +61,14 @@ import { Subscription } from 'rxjs';
 export class ResultTableComponent implements OnInit, OnDestroy {
 
   @Input() kind: number;
-  @Output() validate = new EventEmitter<boolean>();
+  @Input() kindName: string;
+  @Output() validate = new EventEmitter<{kind: string, valid?: boolean, progress?: boolean, errors?: any[]}>();
 
   rows = [];
   rowcount = 0;
   headers = [];
   subs: Subscription[] = [];
+  errors: any[] = null;
 
   constructor(private store: StoreService) {
     this.subs.push(
@@ -77,15 +79,25 @@ export class ResultTableComponent implements OnInit, OnDestroy {
               console.log('GOT HEADERS', row);
               this.rows = [];
               this.rowcount = 0;
+              this.errors = null;
               this.headers = row.data;
               this.headers.unshift('#');
               setTimeout(() => {
-                this.validate.emit(false);
+                this.validate.emit({kind: this.kindName, progress: true});
+              }, 0);
+            } else if (row.index === -2) {
+              console.log('GOT DONE');
+              setTimeout(() => {
+                if (this.errors) {
+                  this.validate.emit({kind: this.kindName, errors: this.errors});
+                } else {
+                  this.validate.emit({kind: this.kindName, valid: true});
+                }
               }, 0);
             } else {
               if (this.rows.length === 0) {
                 setTimeout(() => {
-                  this.validate.emit(true);
+                  this.validate.emit({kind: this.kindName, progress: true});
                 }, 0);
               } else {
                 if (this.rows[this.rows.length - 1].data[0] !== row.index ) {
@@ -94,9 +106,14 @@ export class ResultTableComponent implements OnInit, OnDestroy {
               }
               const mapped: any = this.headers.map((h) => this.strize(row.data[h]));
               mapped[0] = row.index + 1;
+              const errd = row.errors && row.errors.length > 0;
+              if (errd) {
+                this.errors = row.errors;
+                this.validate.emit({kind: this.kindName, errors: row.errors});
+              }
               this.rows.push({
                 data: mapped,
-                errd: row.errors && row.errors.length > 0
+                errd: errd
               });
             }
           }

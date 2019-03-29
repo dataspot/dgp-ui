@@ -1,26 +1,46 @@
 <span class='tab'
-        [ngClass]='{active: selected === "extract", valid: validation["extract"]}'
+        [ngClass]='{active: selected === "extract", valid: validation["extract"].valid, inprogress: validation["extract"].progress, errored: validation["extract"].errors}'
         (click)='select("extract")'
         >
-    Extract&nbsp;<i class='fa fa-check-circle'></i>&nbsp;<i class='fa fa-chevron-left'></i>
+    פענוח&nbsp;
+    <i class='fa fa-check-circle'></i>
+    <i class='fa fa-circle-notch fa-spin'></i>
+    <i class='fa fa-question-circle'></i>
+    <i class='fa fa-exclamation-triangle' [title]='validation["extract"].errors'></i>
+    &nbsp;<i class='fa fa-chevron-left'></i>
 </span>
 <span class='tab'
-        [ngClass]='{active: selected === "map", valid: validation["map"]}'
+        [ngClass]='{active: selected === "map", valid: validation["map"].valid, inprogress: validation["map"].progress, errored: validation["map"].errors}'
         (click)='select("map")'
         >
-    Map&nbsp;<i class='fa fa-check-circle'></i>&nbsp;<i class='fa fa-chevron-left'></i>
+    מיפוי&nbsp;
+    <i class='fa fa-check-circle'></i>
+    <i class='fa fa-circle-notch fa-spin'></i>
+    <i class='fa fa-question-circle'></i>
+    <i class='fa fa-exclamation-triangle' [title]='validation["map"].errors'></i>
+    &nbsp;<i class='fa fa-chevron-left'></i>
 </span>
 <span class='tab'
-        [ngClass]='{active: selected === "enrich", valid: validation["enrich"]}'
+        [ngClass]='{active: selected === "enrich", valid: validation["enrich"].valid, inprogress: validation["enrich"].progress, errored: validation["enrich"].errors}'
         (click)='select("enrich")'
         >
-    Enrich&nbsp;<i class='fa fa-check-circle'></i>&nbsp;<i class='fa fa-chevron-left'></i>
+    העשרה&nbsp;
+    <i class='fa fa-check-circle'></i>
+    <i class='fa fa-circle-notch fa-spin'></i>
+    <i class='fa fa-question-circle'></i>
+    <i class='fa fa-exclamation-triangle' [title]='validation["enrich"].errors'></i>
+    &nbsp;<i class='fa fa-chevron-left'></i>
 </span>
 <span class='tab'
-        [ngClass]='{active: selected === "publish", valid: validation["publish"]}'
+        [ngClass]='{active: selected === "publish", valid: validation["publish"].valid, inprogress: validation["publish"].progress, errored: validation["publish"].errors}'
         (click)='select("publish")'
         >
-    Publish&nbsp;<i class='fa fa-check-circle'></i>&nbsp;<i class='fa fa-chevron-left'></i>
+    פרסום&nbsp;
+    <i class='fa fa-check-circle'></i>
+    <i class='fa fa-circle-notch fa-spin'></i>
+    <i class='fa fa-question-circle'></i>
+    <i class='fa fa-exclamation-triangle' [title]='validation["publish"].errors'></i>
+    &nbsp;<i class='fa fa-chevron-left'></i>
 </span>
 <span>
     <a (click)='store.setConfig(null)'>&lt;&lt;&lt; Back</a>

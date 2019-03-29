@@ -18,6 +18,7 @@
         cursor: pointer;
         z-index: 1;
         background-color: #fff;
+        white-space: nowrap;
     }
     
     .tab.active {
@@ -27,14 +28,51 @@
     }
 
     .fa-check-circle {
-        visibility: hidden;
+        display: none;
         color: #66e866;
     }
+
+    .fa-circle-notch {
+        display: none;
+        color: #ffba00;
+    }
+    .fa-exclamation-triangle {
+        display: none;
+        color: red;
+    }
     
+    .fa-question-circle {
+        display: inline;
+        color: #aaa;
+    }
+
     .tab.valid {
         // background-color: #66e866;
         .fa-check-circle {
-            visibility: visible;
+            display: inline;
+        }
+        .fa-question-circle {
+            display: none;
+        }
+    }
+
+    .tab.inprogress {
+        // background-color: #66e866;
+        .fa-circle-notch {
+            display: inline;
+        }
+        .fa-question-circle {
+            display: none;
+        }
+    }
+
+    .tab.errored {
+        // background-color: #66e866;
+        .fa-exclamation-triangle {
+            display: inline;
+        }
+        .fa-question-circle {
+            display: none;
         }
     }
 }
