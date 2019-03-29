@@ -67,6 +67,9 @@ export class ApiService {
           } else if (event.t === 'e') {
             console.log('got error', event.c, event.p, event.e);
             that.store.setErrors(event.e);
+          } else if (event.t === 'f') {
+            console.log('got FAILURE', event.e);
+            // that.store.setErrors(event.e);
           }
         }
       },
