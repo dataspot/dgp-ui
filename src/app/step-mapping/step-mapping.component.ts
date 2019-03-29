@@ -7,7 +7,7 @@ import { StoreService } from '../store.service';
   template: `
     <div class='formish'>
       <label>Taxonomy:</label>
-      <select [(ngModel)]='config.taxonomy.id'>
+      <select [(ngModel)]='config.taxonomy.id' (change)='changed()'>
         <option *ngFor='let txid of config.taxonomy.options' [value]='txid.id'>{{txid.title}}</option>
       </select>
     </div>

@@ -18,14 +18,12 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
       <option value='csv'>CSV</option>
     </select>
   </div>
-  <ng-container *ngIf='source.format==="xls" || source.format==="xlsx"'>
+  <ng-container *ngIf='source.sheet_names'>
     <div class='formish'>
       <label>Sheet:</label>
-      <input type='number'
-        min="0" max="100"
-        [(ngModel)]='source.sheet'
-        (change)='changed()'
-      />
+      <select [(ngModel)]='source.sheet' change='changed()'>
+        <option *ngFor='let x of source.sheet_names' [value]='x[0]'>{{x[1]}}</option>
+      </select>
     </div>
   </ng-container>
   <ng-container *ngIf='source.format==="csv"'>
