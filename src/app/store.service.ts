@@ -13,6 +13,8 @@ function compare(obj1, obj2, prefix) {
   try {
     // Loop through properties in object 1
     for (const p of Object.keys(obj1)) {
+      // ignore properties starting with '_'
+      if (p[0] === '_') { continue; }
       // Check property exists on both objects
       if (obj1.hasOwnProperty(p) !== obj2.hasOwnProperty(p)) { return false; }
 
@@ -87,11 +89,14 @@ export class StoreService {
     this.setConfig(this.BASE_CONFIG);
   }
 
-  setConfig(newConfig: any) {
+  setConfig(newConfig: any, result?: boolean) {
     if (!compare(this.currentConfig, newConfig, null)) {
       console.log('setting new configuration', newConfig);
       this.currentConfig = JSON.parse(JSON.stringify(newConfig));
+      this.currentConfig['_result'] = !!result;
       this._config.next(newConfig);
+    } else {
+      console.log('new configuration identical', this.currentConfig, newConfig);
     }
   }
 

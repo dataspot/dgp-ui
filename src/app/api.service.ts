@@ -37,7 +37,7 @@ export class ApiService {
           if (this.config) {
             const config = this.config;
             this.config = null;
-            that.store.setConfig(config);
+            that.store.setConfig(config, true);
           }
         } else if (event.t) {
           if (event.t === 'c') {
@@ -85,8 +85,10 @@ export class ApiService {
   }
 
   storeConfig(config: any) {
-    const suffix = this.executionId ? '?uid=' + this.executionId : '';
-    return this.http.post(this.SERVER + '/config' + suffix, config);
+    if (!config['_result']) {
+      const suffix = this.executionId ? '?uid=' + this.executionId : '';
+      return this.http.post(this.SERVER + '/config' + suffix, config);  
+    }
   }
 
   refreshConfigurations() {
