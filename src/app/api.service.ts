@@ -87,7 +87,7 @@ export class ApiService {
   storeConfig(config: any) {
     if (!config['_result']) {
       const suffix = this.executionId ? '?uid=' + this.executionId : '';
-      return this.http.post(this.SERVER + '/config' + suffix, config);  
+      return this.http.post(this.SERVER + '/config' + suffix, config);
     }
   }
 

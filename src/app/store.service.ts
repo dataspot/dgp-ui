@@ -90,6 +90,11 @@ export class StoreService {
   }
 
   setConfig(newConfig: any, result?: boolean) {
+    if (!newConfig) {
+      console.log('clearing configuration', newConfig);
+      this._config.next(newConfig);
+      return;
+    }
     if (!compare(this.currentConfig, newConfig, null)) {
       console.log('setting new configuration', newConfig);
       this.currentConfig = JSON.parse(JSON.stringify(newConfig));
