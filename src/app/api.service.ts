@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { StoreService } from './store.service';
 import { Observable, of, Subject, BehaviorSubject  } from 'rxjs';
-import { switchMap, exhaustMap, map, filter } from 'rxjs/operators';
+import { switchMap, exhaustMap, map, filter, debounceTime } from 'rxjs/operators';
 import { EventSourcePolyfill } from 'ng-event-source';
 
 @Injectable({
@@ -22,9 +22,14 @@ export class ApiService {
     const events = (<Observable<any>>(this.store.getConfig()))
          .pipe(
             filter((x: any) => !!x),
+            debounceTime(3000),
             switchMap((config: any) => this.storeConfig(config)),
             switchMap((response: any) => {
               this.executionId = response.uid;
+              console.log('FETCHING EVENTS');
+              this.store.addRow({
+                kind: -1,
+              });
               return this.fetchEvents(this.executionId);
             })
          );

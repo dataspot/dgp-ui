@@ -74,7 +74,16 @@ export class ResultTableComponent implements OnInit, OnDestroy {
     this.subs.push(
       this.store.getRows()
         .subscribe((row) => {
-          if (this.kind === row.kind) {
+          if (row.kind === -1) {
+            this.rows = [];
+            this.rowcount = 0;
+            this.errors = null;
+            console.log('CLEARING STATE FOR', this.kind);
+            setTimeout(() => {
+              console.log('IN PROGRESS');
+              this.validate.emit({kind: this.kindName, progress: this.kind === 0});
+            }, 0);
+          } else if (this.kind === row.kind) {
             if (row.index === -1) {
               console.log('GOT HEADERS', row);
               this.rows = [];
