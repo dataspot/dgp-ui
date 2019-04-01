@@ -66,6 +66,7 @@ export class StoreService {
   private _rows = new Subject<any>();
   private _rowcount = new Subject<any>();
   private _errors = new BehaviorSubject<any>([]);
+  private _failure = new Subject<string>();
 
   constructor() { }
 
@@ -83,6 +84,10 @@ export class StoreService {
 
   getErrors(): BehaviorSubject<any> {
     return this._errors;
+  }
+
+  getFailure(): Subject<string> {
+    return this._failure;
   }
 
   newConfig() {

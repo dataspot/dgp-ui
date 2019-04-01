@@ -26,6 +26,7 @@ import { StepMappingFieldComponent } from './step-mapping-field/step-mapping-fie
 import { ExtendableKeyvalueListComponent } from './extendable-keyvalue-list/extendable-keyvalue-list.component';
 import { ConfigurationsComponent } from './configurations/configurations.component';
 import { DatasetItemComponent } from './dataset-item/dataset-item.component';
+import { FailureMarqueeComponent } from './failure-marquee/failure-marquee.component';
 
 @NgModule({
   declarations: [
@@ -49,7 +50,8 @@ import { DatasetItemComponent } from './dataset-item/dataset-item.component';
     StepMappingFieldComponent,
     ExtendableKeyvalueListComponent,
     ConfigurationsComponent,
-    DatasetItemComponent
+    DatasetItemComponent,
+    FailureMarqueeComponent
   ],
   imports: [
     BrowserModule,

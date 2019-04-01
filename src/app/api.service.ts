@@ -79,6 +79,7 @@ export class ApiService {
             that.store.setErrors(event.e);
           } else if (event.t === 'f') {
             console.log('got FAILURE', event.e);
+            that.store.getFailure().next(event.e);
             // that.store.setErrors(event.e);
           }
         }
@@ -108,6 +109,7 @@ export class ApiService {
 
   fetchEvents(executionId: string) {
     this.store.setErrors([]);
+    this.store.getFailure().next(null);
     const observable = Observable.create(observer => {
 
       let eventSource;
