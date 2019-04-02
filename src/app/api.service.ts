@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { StoreService } from './store.service';
-import { Observable, of, Subject, BehaviorSubject  } from 'rxjs';
+import { Observable, of, Subject, BehaviorSubject, from  } from 'rxjs';
 import { switchMap, exhaustMap, map, filter, debounceTime } from 'rxjs/operators';
 import { EventSourcePolyfill } from 'ng-event-source';
 
@@ -94,6 +94,8 @@ export class ApiService {
     if (!config['_result']) {
       const suffix = this.executionId ? '?uid=' + this.executionId : '';
       return this.http.post(this.SERVER + '/config' + suffix, config);
+    } else {
+      return from([]);
     }
   }
 

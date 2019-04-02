@@ -5,23 +5,29 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
   template: `
     <div class='formish'>
       <label>{{mapping.name}}</label>
-      <input type='text'
-        [(ngModel)]='mapping.title'
-        (change)='changed()'
-      />
       <input [(ngModel)]='compound' type='checkbox'>
       <ng-container *ngIf='!compound'>
-        <select [(ngModel)]='mapping.columnType'>
-          <option *ngFor='let ct of taxonomy.columnTypes' [value]='ct.name'>{{ct.title}} - {{ct.description}}</option>
+        <select [value]='mapping.columnType' (change)='updateMapping($event.target.value); changed()'>
+          <option *ngFor='let ct of taxonomy.columnTypes'
+                  [value]='ct.name'>{{ct.title}} - {{ct.description}}
+          </option>
         </select>
       </ng-container>
       <div class='compound' *ngIf='compound'>
-        <input type='text'
-          [(ngModel)]='mapping.normalizeTarget'
-          (change)='changed()'
-        />
+        <span>
+          <select [value]='mapping.normalizeTarget' (change)='mapping.normalizeTarget = $event.target.value; changed()'>
+            <option *ngFor='let ct of taxonomy.columnTypes'
+                    [value]='ct.title'>{{ct.title}} - {{ct.description}}
+            </option>
+          </select>
+          (<input type='text'
+            [(ngModel)]='mapping.normalizeTarget'
+            (change)='changed()'
+          />)
+        </span>
         <span class='for'>for</span>
         <app-extendable-keyvalue-list
+          [taxonomy]='taxonomy'
           [data]='mapping.normalize || {}'
           (update)='mapping.normalize = $event; changed()'
         ></app-extendable-keyvalue-list>
@@ -69,6 +75,18 @@ export class StepMappingFieldComponent implements OnInit {
       delete this.mapping['normalizeTarget'];
       this.mapping['columnType'] = '';
     }
+  }
+
+  updateMapping(ctName) {
+    this.mapping.columnType = ctName;
+    console.log('updating type to', ctName);
+    for (const ct of this.taxonomy.columnTypes) {
+      if (ct.name === ctName) {
+        console.log('updating title to', ct.title);
+        this.mapping.title = ct.title;
+      }
+    }
+    this.changed();
   }
 
 }

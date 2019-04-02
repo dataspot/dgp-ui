@@ -5,10 +5,14 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
   template: `
     <div>
       <span class='item' *ngFor='let value of values'>
-        <input type='text'
+        <select [(ngModel)]='value[0]' (change)='changed()'>
+          <option *ngFor='let ct of taxonomy.columnTypes'
+                  [value]='ct.title'>{{ct.title}}</option>
+        </select>
+        (<input type='text'
           [(ngModel)]='value[0]'
           (change)='changed()'
-        />
+        />)
         <span> = </span>
         <input type='text'
           [(ngModel)]='value[1]'
@@ -37,6 +41,7 @@ export class ExtendableKeyvalueListComponent implements OnInit {
 
   @Input() data;
   @Input() dataList;
+  @Input() taxonomy: any;
   @Output() update = new EventEmitter<any>();
   @Output() updateList = new EventEmitter<any>();
 

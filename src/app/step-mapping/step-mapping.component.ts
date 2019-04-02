@@ -27,18 +27,22 @@ import { Subscription } from 'rxjs';
       <label>Constants:</label>
       <app-extendable-keyvalue-list
           [dataList]='config.constants || []'
+          [taxonomy]='config.taxonomy'
           (updateList)='config.constants = $event; changed()'
       ></app-extendable-keyvalue-list>
     </div>
     <ng-container *ngIf='config.model && config.taxonomy'>
       <div class='formish'>
-        <label>Mapping:</label>
+        <label>
+           Mapping:<br/>
+           <button class='btn btn-outline-success btn-sm' *ngIf='mappingChanged' (click)='changed()'>Update</button>
+        </label>
         <div>
           <app-step-mapping-field
             *ngFor='let mapping of config.model.mapping'
             [mapping]='mapping'
             [taxonomy]='config.taxonomy'
-            (change)='changed()'
+            (change)='mappingChanged = true'
           >
           </app-step-mapping-field>
         </div>
@@ -75,6 +79,8 @@ export class StepMappingComponent implements OnInit, OnDestroy {
   config: any = null;
   errors: any = [];
   subs: Subscription[] = [];
+  mappingChanged = false;
+  
   constructor(private store: StoreService) { }
 
   ngOnInit() {
@@ -83,6 +89,7 @@ export class StepMappingComponent implements OnInit, OnDestroy {
   }
 
   changed() {
+    this.mappingChanged = false;
     this.store.setConfig(this.config);
   }
 

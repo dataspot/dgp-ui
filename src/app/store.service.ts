@@ -101,9 +101,9 @@ export class StoreService {
       return;
     }
     if (!compare(this.currentConfig, newConfig, null)) {
-      console.log('setting new configuration', newConfig);
+      newConfig['_result'] = !!result;
       this.currentConfig = JSON.parse(JSON.stringify(newConfig));
-      this.currentConfig['_result'] = !!result;
+      console.log('setting new configuration', this.currentConfig);
       this._config.next(newConfig);
     } else {
       console.log('new configuration identical', this.currentConfig, newConfig);

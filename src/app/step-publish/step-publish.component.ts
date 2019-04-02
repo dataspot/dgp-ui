@@ -25,14 +25,12 @@ export class StepPublishComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.sub = this.store.getConfig().subscribe(config => {
       this.config = config;
-      this.config['publish'] = {allowed: false};
     });
   }
 
   publish() {
     this.config['publish'] = {allowed: true};
     this.store.setConfig(this.config);
-    this.config['publish'] = {allowed: false};
   }
 
   ngOnDestroy() {
