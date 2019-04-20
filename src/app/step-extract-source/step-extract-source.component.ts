@@ -16,6 +16,8 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
       <option value='xls'>Excel (xls)</option>
       <option value='xlsx'>Excel (xlsx)</option>
       <option value='csv'>CSV</option>
+      <option value='json'>JSON</option>
+      <option value='gsheet'>Google Spreadsheet</option>
     </select>
   </div>
   <ng-container *ngIf='source.sheet_names'>
@@ -31,6 +33,15 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
       <label>Encoding:</label>
       <input type='text'
         [(ngModel)]='source.encoding'
+        (change)='changed()'
+      />
+    </div>
+  </ng-container>
+  <ng-container *ngIf='source.format==="json"'>
+    <div class='formish'>
+      <label>JSON Path:</label>
+      <input type='text'
+        [(ngModel)]='source.property'
         (change)='changed()'
       />
     </div>
