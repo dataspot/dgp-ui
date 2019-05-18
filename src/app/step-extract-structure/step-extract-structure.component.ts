@@ -4,7 +4,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
   selector: 'app-step-extract-structure',
   template: `
   <div class='formish'>
-    <label>Skip Rows:</label>
+    <label i18n>Skip Rows:</label>
     <input type='number'
       min="0" max="100"
       [(ngModel)]='structure.skip_rows'
@@ -12,7 +12,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
     />
   </div>
   <div class='formish'>
-    <label>Skip Columns:</label>
+    <label i18n>Skip Columns:</label>
     <input type='number'
       min="0" max="100"
       [(ngModel)]='structure.skip_cols'

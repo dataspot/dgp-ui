@@ -5,7 +5,7 @@ import { Subscription } from 'rxjs';
 @Component({
   selector: 'app-step-publish',
   template: `
-    <a class='btn btn-primary' (click)='publish()'>
+    <a class='btn btn-primary' (click)='publish()' i18n>
       Load data into database
     </a>
   `,

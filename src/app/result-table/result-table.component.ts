@@ -6,7 +6,7 @@ import { Subscription } from 'rxjs';
 @Component({
   selector: 'app-result-table',
   template: `
-  <span>Count: {{rowcount}}</span>
+  <span i18n>Count: {{rowcount}}</span>
   <table>
     <thead>
       <th *ngFor='let hdr of headers'>{{hdr}}</th>

@@ -6,13 +6,13 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
     <span class='tab'
           [ngClass]='{active: selected === "original"}'
           (click)='select("original")'
-          >
+          i18n>
       Original
     </span>
     <span class='tab'
           [ngClass]='{active: selected === "transformed"}'
           (click)='select("transformed")'
-          >
+          i18n>
       Transformed
     </span>
   `,

@@ -4,7 +4,7 @@ import { Component, OnInit } from '@angular/core';
   selector: 'app-dataset-list',
   template: `
     <p>TBD</p>
-    <p>dataset list</p>
+    <p i18n>dataset list</p>
   `,
   styles: []
 })

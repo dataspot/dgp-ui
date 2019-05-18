@@ -3,7 +3,7 @@
             [ngClass]='{active: selected === "extract", valid: validation["extract"].valid, inprogress: validation["extract"].progress, errored: validation["extract"].errors}'
             (click)='select("extract")'
             >
-        פענוח&nbsp;
+        <span i18n>Extract</span>&nbsp;
         <i class='fa fa-check-circle'></i>
         <i class='fa fa-circle-notch fa-spin'></i>
         <i class='fa fa-question-circle'></i>
@@ -14,7 +14,7 @@
             [ngClass]='{active: selected === "map", valid: validation["map"].valid, inprogress: validation["map"].progress, errored: validation["map"].errors}'
             (click)='select("map")'
             >
-        מיפוי&nbsp;
+        <span i18n>Map</span>&nbsp;
         <i class='fa fa-check-circle'></i>
         <i class='fa fa-circle-notch fa-spin'></i>
         <i class='fa fa-question-circle'></i>
@@ -25,7 +25,7 @@
             [ngClass]='{active: selected === "enrich", valid: validation["enrich"].valid, inprogress: validation["enrich"].progress, errored: validation["enrich"].errors}'
             (click)='select("enrich")'
             >
-        העשרה&nbsp;
+        <span i18n>Transform</span>&nbsp;
         <i class='fa fa-check-circle'></i>
         <i class='fa fa-circle-notch fa-spin'></i>
         <i class='fa fa-question-circle'></i>
@@ -36,7 +36,7 @@
             [ngClass]='{active: selected === "publish", valid: validation["publish"].valid, inprogress: validation["publish"].progress, errored: validation["publish"].errors}'
             (click)='select("publish")'
             >
-        פרסום&nbsp;
+        <span i18n>Publish</span>&nbsp;
         <i class='fa fa-check-circle'></i>
         <i class='fa fa-circle-notch fa-spin'></i>
         <i class='fa fa-question-circle'></i>
@@ -44,6 +44,6 @@
         &nbsp;<i class='fa fa-chevron-left'></i>
     </span>
     <span>
-        <a (click)='store.setConfig(null)'>&lt;&lt;&lt; Back</a>
+        <a (click)='store.setConfig(null)' i18n>&lt;&lt;&lt; Back</a>
     </span>
 </div>

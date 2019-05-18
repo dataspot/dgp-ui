@@ -25,7 +25,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
             (change)='changed()'
           />)
         </span>
-        <span class='for'>for</span>
+        <span class='for' i18n>for</span>
         <app-extendable-keyvalue-list
           [taxonomy]='taxonomy'
           [data]='mapping.normalize || {}'

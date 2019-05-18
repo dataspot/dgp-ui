@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'app-step-enrich',
   template: `
-    <p>
+    <p i18n>
       Loading taxonomy specific enrichments...
     </p>
   `,
