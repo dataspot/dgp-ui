@@ -80,12 +80,13 @@ export class StepMappingComponent implements OnInit, OnDestroy {
   errors: any = [];
   subs: Subscription[] = [];
   mappingChanged = false;
-  
+
   constructor(private store: StoreService) { }
 
   ngOnInit() {
     this.subs.push(this.store.getConfig().subscribe(config => this.config = config));
     this.subs.push(this.store.getErrors().subscribe(errors => this.errors = errors));
+    this.config.taxonomy = this.config.taxonomy || {};
   }
 
   changed() {
