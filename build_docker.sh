@@ -1,2 +1,2 @@
-docker build . -t hasadna/datacity-importer:latest
-docker push hasadna/datacity-importer:latest
+docker build . -t akariv/dgp-ui:latest
+docker push akariv/dgp-ui:latest
