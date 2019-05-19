@@ -1,14 +1,37 @@
 /* You can add global styles to this file, and also import other style files */
 body {
     font-size: 16px;
+
+    .only-rtl {
+        display: none;
+    }
+
+    &.rtl {
+        * {
+            direction: rtl;
+            text-align: right;
+        }
+        
+        app-step-tabs {
+            .tab-container {
+                right: 20px;
+                left: auto;
+            }
+        }
+
+        .only-ltr {
+            display: none;
+        }
+        .only-rtl {
+            display: initial;
+        }        
+    }
 }
 
 * {
     font-family: 'Assistant', 'Open Sans', sans-serif;
     box-sizing: border-box;
     margin: 0;    
-    direction: rtl;
-    text-align: right;
 }
 
 a {

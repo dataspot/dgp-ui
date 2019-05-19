@@ -44,6 +44,30 @@
               "extractLicenses": true,
               "vendorChunk": false,
               "buildOptimizer": true
+            },
+            "he": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.prod.ts"
+                }
+              ],
+              "outputPath": "dist/kuvira/he/",
+              "i18nFile": "src/locale/messages.he.xlf",
+              "i18nFormat": "xlf",
+              "i18nLocale": "he",
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "styles": [
+                "src/styles.less"
+              ]
             }
           }
         },
@@ -55,6 +79,9 @@
           "configurations": {
             "production": {
               "browserTarget": "kuvira:build:production"
+            },
+            "he": {
+              "browserTarget": "kuvira:build:he"
             }
           }
         },

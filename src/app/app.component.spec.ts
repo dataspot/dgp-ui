@@ -23,6 +23,9 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { ExtendableKeyvalueListComponent } from './extendable-keyvalue-list/extendable-keyvalue-list.component';
+import { ConfigurationsComponent } from './configurations/configurations.component';
+import { FailureMarqueeComponent } from './failure-marquee/failure-marquee.component';
+import { DatasetItemComponent } from './dataset-item/dataset-item.component';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
@@ -47,6 +50,10 @@ describe('AppComponent', () => {
         StepExtractStructureComponent,
         StepMappingFieldComponent,
         ExtendableKeyvalueListComponent,
+        ConfigurationsComponent,
+        FailureMarqueeComponent,
+        DatasetItemComponent,
+        DatasetListComponent
       ],
       imports: [
         BrowserModule,

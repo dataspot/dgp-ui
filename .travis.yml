@@ -16,7 +16,7 @@ script:
 - tx pull --mode sourceastranslation -l he,en
 - ng lint
 - ng test --no-watch
-- ng build --prod
+- ng build --prod --configuration=production
 - docker build . -t $DOCKER_REPO:latest
 deploy:
   provider: script
