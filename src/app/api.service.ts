@@ -39,14 +39,14 @@ export class ApiService {
       next(event) {
         // console.log('EVENT', event);
         if (event.complete) {
-          if (this.config) {
-            const config = this.config;
-            this.config = null;
-            that.store.setConfig(config, true);
-          }
         } else if (event.t) {
           if (event.t === 'c') {
             this.config = event.p;
+            if (this.config) {
+              const config = this.config;
+              this.config = null;
+              that.store.setConfig(config, true);
+            }
           } else if (event.t === 'r') {
             if (event.i % 1000 === 0) {
               console.log('ROW', event);
