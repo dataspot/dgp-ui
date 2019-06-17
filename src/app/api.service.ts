@@ -12,7 +12,7 @@ export class ApiService {
 
   private executionId = null;
   private SERVER = '/api';
-  private CONFIGS = '/configs';
+  private CONFIGS = this.SERVER + '/configs';
 
   public configurations = new BehaviorSubject<any[]>([]);
 
