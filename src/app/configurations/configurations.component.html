@@ -1,5 +1,9 @@
 <div class='controls'>
   <a class='new' (click)='store.newConfig()'><i class="fa fa-plus-circle" aria-hidden="true"></i></a>
+  <a class='open'>
+    <input name='file' id='file' type="file" (change)="fileChanged($event)"/>
+    <label for='file'><i class="fa fa-folder-open" aria-hidden="true"></i></label>
+  </a>
   <a class='refresh' (click)='api.refreshConfigurations()'><i class="fa fa-sync-alt" aria-hidden="true"></i></a>
 </div>
 <div class='datasets' *ngFor='let config of (api.configurations | async)'>

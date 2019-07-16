@@ -15,4 +15,16 @@ export class ConfigurationsComponent implements OnInit {
     this.api.refreshConfigurations();
   }
 
+  fileChanged(event) {
+    console.log(event);
+    const file = event.target.files[0];
+    console.log(file);
+    const fileReader = new FileReader();
+    fileReader.onload = (e) => {
+      let content = e.target['result'];
+      content = JSON.parse(content);
+      this.store.setConfig(content);
+    };
+    fileReader.readAsText(file);
+  }
 }
