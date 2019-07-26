@@ -27,6 +27,8 @@ import { ExtendableKeyvalueListComponent } from './extendable-keyvalue-list/exte
 import { ConfigurationsComponent } from './configurations/configurations.component';
 import { DatasetItemComponent } from './dataset-item/dataset-item.component';
 import { FailureMarqueeComponent } from './failure-marquee/failure-marquee.component';
+import { ExtraConfigQuestionComponent } from './extra-config-question/extra-config-question.component';
+import { ExtraConfigQuestionsComponent } from './extra-config-questions/extra-config-questions.component';
 
 @NgModule({
   declarations: [
@@ -51,7 +53,9 @@ import { FailureMarqueeComponent } from './failure-marquee/failure-marquee.compo
     ExtendableKeyvalueListComponent,
     ConfigurationsComponent,
     DatasetItemComponent,
-    FailureMarqueeComponent
+    FailureMarqueeComponent,
+    ExtraConfigQuestionComponent,
+    ExtraConfigQuestionsComponent
   ],
   imports: [
     BrowserModule,
