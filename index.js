@@ -4,7 +4,7 @@ const express = require('express');
 const proxy = require('express-http-proxy');
 const app = express();
 const rootDir = './dist/kuvira/';
-const backend = process.env.BACKEND || 'localhost:8000';
+const backend = process.env.BACKEND || 'localhost:9000';
 
 function proxyOpts(prefix) {
   return {
@@ -17,7 +17,7 @@ function proxyOpts(prefix) {
   }
 }
 
-app.set('port', process.env.PORT || 8001);
+app.set('port', process.env.PORT || 8000);
 app.use('/api', proxy(backend, proxyOpts('/api')));
 app.use('/', express.static(rootDir, {
   maxAge: '1d',

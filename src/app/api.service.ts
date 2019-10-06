@@ -117,7 +117,11 @@ export class ApiService {
       let eventSource;
       // this.error.emit(null);
       try {
-        eventSource = new EventSourcePolyfill(this.SERVER + '/events/' + this.executionId, {});
+        eventSource = new EventSourcePolyfill(this.SERVER + '/events/' + this.executionId, {
+          heartbeatTimeout: 300000,
+          errorOnTimeout: false,
+          connectionTimeout: 300000,
+        });
       } catch (e) {
         // this.error.emit(e.message);
         observer.error(e);
