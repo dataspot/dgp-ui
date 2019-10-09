@@ -26,6 +26,8 @@ import { ExtendableKeyvalueListComponent } from './extendable-keyvalue-list/exte
 import { ConfigurationsComponent } from './configurations/configurations.component';
 import { FailureMarqueeComponent } from './failure-marquee/failure-marquee.component';
 import { DatasetItemComponent } from './dataset-item/dataset-item.component';
+import { ExtraConfigQuestionComponent } from './extra-config-question/extra-config-question.component';
+import { ExtraConfigQuestionsComponent } from './extra-config-questions/extra-config-questions.component';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
@@ -53,7 +55,9 @@ describe('AppComponent', () => {
         ConfigurationsComponent,
         FailureMarqueeComponent,
         DatasetItemComponent,
-        DatasetListComponent
+        DatasetListComponent,
+        ExtraConfigQuestionComponent,
+        ExtraConfigQuestionsComponent
       ],
       imports: [
         BrowserModule,
