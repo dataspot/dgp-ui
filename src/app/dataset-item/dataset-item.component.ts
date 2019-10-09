@@ -18,7 +18,7 @@ export class DatasetItemComponent implements OnInit {
 
   jsonDownload() {
     return this.sanitizer.bypassSecurityTrustUrl(
-      'data:text/json;charset=utf-8,' + encodeURIComponent(JSON.stringify(this.config))
+      'data:text/json;charset=utf-8,' + encodeURIComponent(JSON.stringify(this.config.config))
     );
   }
 }
