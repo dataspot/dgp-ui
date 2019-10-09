@@ -8,6 +8,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
       <input [(ngModel)]='compound' type='checkbox'>
       <ng-container *ngIf='!compound'>
         <select [value]='mapping.columnType' (change)='updateMapping($event.target.value); changed()'>
+          <option [value]='null'>-</option>
           <option *ngFor='let ct of taxonomy.columnTypes'
                   [value]='ct.name'>{{ct.title}} - {{ct.description}}
           </option>
@@ -16,6 +17,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
       <div class='compound' *ngIf='compound'>
         <span>
           <select [value]='mapping.normalizeTarget' (change)='mapping.normalizeTarget = $event.target.value; changed()'>
+            <option [value]='null'>-</option>
             <option *ngFor='let ct of taxonomy.columnTypes'
                     [value]='ct.title'>{{ct.title}} - {{ct.description}}
             </option>
@@ -78,13 +80,16 @@ export class StepMappingFieldComponent implements OnInit {
   }
 
   updateMapping(ctName) {
-    this.mapping.columnType = ctName;
-    console.log('updating type to', ctName);
-    for (const ct of this.taxonomy.columnTypes) {
-      if (ct.name === ctName) {
-        console.log('updating title to', ct.title);
-        this.mapping.title = ct.title;
+    if (ctName !== 'null') {
+      this.mapping.columnType = ctName;
+      for (const ct of this.taxonomy.columnTypes) {
+        if (ct.name === ctName) {
+          console.log('updating title to', ct.title);
+          this.mapping.title = ct.title;
+        }
       }
+    } else {
+      delete this.mapping['columnType'];
     }
     this.changed();
   }

@@ -1,5 +1,6 @@
   <div class='snippets'>
     <span *ngFor='let snippet of config.snippets'>{{snippet}}</span>
   </div>
-  <a target='_blank' [href]='config.source'><i class="fa fa-download" aria-hidden="true"></i></a>
-  <a (click)='store.setConfig(config.config)'><i class="fa fa-pencil-alt" aria-hidden="true"></i></a>
+  <a target='_blank' [href]='jsonDownload()' download='config.json' title='Download Configuration'><i class="fa fa-file-download" aria-hidden="true"></i></a>
+  <a target='_blank' [href]='config.source' title='Download Source Data'><i class="fa fa-cloud-download-alt" aria-hidden="true"></i></a>
+  <a (click)='store.setConfig(config.config)' title='Edit Entry'><i class="fa fa-pencil-alt" aria-hidden="true"></i></a>
